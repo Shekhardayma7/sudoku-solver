@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is a website to Solve Sudoku puzzle">
+    <title>Sudoku Solver</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="heading center">
+            <h1 id="name">Sudoku Solver</h1>
+        </div>
+    </header>
+
+    <div class="suduko">
+        <table class="sudoku-table">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc00" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc01" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc02" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc10" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc11" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc12" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc20" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc21" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc22" maxlength="1"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc03" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc04" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc05" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc13" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc14" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc15" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc23" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc24" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc25" maxlength="1"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc06" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc07" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc08" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc16" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc17" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc18" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc26" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc27" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc28" maxlength="1"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc30" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc31" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc32" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc40" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc41" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc42" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc50" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc51" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc52" maxlength="1"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc33" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc34" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc35" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc43" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc44" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc45" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc53" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc54" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc55" maxlength="1"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc36" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc37" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc38" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc46" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc47" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc48" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc56" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc57" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc58" maxlength="1"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc60" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc61" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc62" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc70" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc71" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc72" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc80" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc81" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc82" maxlength="1"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc63" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc64" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc65" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc73" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc74" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc75" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc83" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc84" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc85" maxlength="1"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc66" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc67" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc68" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc76" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc77" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc78" maxlength="1"></td>
+                        </tr>
+                        <tr>
+                            <td class="cell"> <input type="text" id="rc86" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc87" maxlength="1"></td>
+                            <td class="cell"> <input type="text" id="rc88" maxlength="1"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <section class="user-action center">
+            <button id="solve_btn"  onclick="solveSudoku()">Solve</button>
+            <button id="reset_btn" onclick="resetSoduko()">Clear</button>
+        </section>
+    </div>
+</body>
+
+</html>

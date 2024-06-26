@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+body {
+    background-image: url(backgraound.avif);
+    background-size: 100%;
+}
+
+#name {
+    color:goldenrod;
+}
+
+.center {
+    text-align: center;
+}
+
+.cell input {
+    text-align: center;
+    background-color: rgb(219, 216, 251);
+}
+
+.sudoku-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cell input {
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+#solve_btn:hover {
+    background-color: greenyellow;
+}
+
+#reset_btn:hover {
+    background-color: greenyellow;
+}
+
+.user-action button{
+    margin: 10px 50px; 
+}
