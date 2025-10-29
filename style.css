@@ -1,16 +1,21 @@
 * {
     margin: 0;
+    
     box-sizing: border-box;
     white-space: nowrap;
 }
-
+.headingcenter{
+    padding-top: 20px;
+    text-align: center;
+}
 body {
-    background-image: url(backgraound.avif);
+    background-image: url(background_.avif);
     background-size: 100%;
 }
 
 #name {
     color:goldenrod;
+    
 }
 
 .center {
@@ -19,29 +24,34 @@ body {
 
 .cell input {
     text-align: center;
-    background-color: rgb(219, 216, 251);
+    background-color: aquamarine;
 }
 
 .sudoku-table {
     margin-left: auto;
     margin-right: auto;
+    padding-top: 30px;
 }
 
 .cell input {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     font-weight: bold;
     font-size: larger;
 }
 
 #solve_btn:hover {
-    background-color: greenyellow;
+    background-color: aqua;
 }
 
 #reset_btn:hover {
-    background-color: greenyellow;
+    background-color: aqua;
 }
 
 .user-action button{
-    margin: 10px 50px; 
+    margin: 20px 50px; 
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
 }

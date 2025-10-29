@@ -1,102 +1,125 @@
-function b(i, j) {
-  return Math.floor(i / 3) * 3 + Math.floor(j / 3);
+// ✅ Check if a number can be placed at (row, col)
+function isValid(board, row, col, num) {
+  // Row & Column check
+  for (let x = 0; x < 9; x++) {
+    if (board[row][x] === num || board[x][col] === num) {
+      return false;
+    }
+  }
+
+  // 3x3 Subgrid check
+  const rn = 3;
+  const startRow = row - (row % rn);
+  const startCol = col - (col % rn);
+
+  for (let x = startRow; x < startRow + rn; x++) {
+    for (let y = startCol; y < startCol + rn; y++) {
+      if (board[x][y] === num) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+function isBoardValid(board) {
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      let num = board[row][col];
+      if (num !== 0) {
+        board[row][col] = 0; // temporarily clear
+        if (!isValid(board, row, col, num)) {
+          return false;
+        }
+        board[row][col] = num; // restore
+      }
+    }
+  }
+  return true;
 }
 
-function solve(row, column, box, blank, i, sudoku, sizi) {
-  if (i === sizi) return true;
-  const rr = Math.floor(blank[i] / 10);
-  const cc = blank[i] % 10;
-  const bb = b(Math.floor(blank[i] / 10), blank[i] % 10);
+// ✅ Recursive Sudoku Solver
+function sudokuSolver(board, row, col) {
+  if (row === 9) {
+    return true; // solved
+  }
 
-  for (let j = 1; j <= 9; j++) {
-    if (!row[rr][j - 1] && !column[cc][j - 1] && !box[bb][j - 1]) {
-      row[rr][j - 1] = true;
-      column[cc][j - 1] = true;
-      box[bb][j - 1] = true;
+  if (col === 9) {
+    return sudokuSolver(board, row + 1, 0);
+  }
 
-      const c = solve(row, column, box, blank, i + 1, sudoku, sizi);
-      if (c) {
-        sudoku[rr][cc] = j;
+  if (board[row][col] !== 0) {
+    return sudokuSolver(board, row, col + 1);
+  }
+
+  for (let num = 1; num <= 9; num++) {
+    if (isValid(board, row, col, num)) {
+      board[row][col] = num;
+
+      if (sudokuSolver(board, row, col + 1)) {
         return true;
       }
-      row[rr][j - 1] = false;
-      column[cc][j - 1] = false;
-      box[bb][j - 1] = false;
+
+      // backtrack
+      board[row][col] = 0;
     }
   }
 
   return false;
 }
 
-function solveSudokuF(sudoku) {
-  const row = Array.from({ length: 9 }, () => Array(9).fill(false));
-  const column = Array.from({ length: 9 }, () => Array(9).fill(false));
-  const box = Array.from({ length: 9 }, () => Array(9).fill(false));
-  const blank = [];
-  let sizi = 0;
-
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      row[i][j] = false;
-      column[i][j] = false;
-      box[i][j] = false;
-    }
-  }
-
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      if (sudoku[i][j] === 0) {
-        blank.push(i * 10 + j);
-        sizi++;
-      } else {
-        const t = sudoku[i][j] - 1;
-        if (row[i][t] || column[j][t] || box[b(i, j)][t]) {
-          return false;
-        }
-        row[i][t] = true;
-        column[j][t] = true;
-        box[b(i, j)][t] = true;
-      }
-    }
-  }
-
-  return solve(row, column, box, blank, 0, sudoku, sizi);
-}
-
+// ✅ Reads Sudoku from HTML and solves it
 function solveSudoku() {
-  const sudoku = [];
+  const board = [];
+  const given = [];
+
+  // Read values from HTML grid
   for (let i = 0; i < 9; i++) {
-    sudoku[i] = [];
+    board[i] = [];
+    given[i] = [];
     for (let j = 0; j < 9; j++) {
-      var idd = ("rc"+i)+j ;
-      var cell = document.getElementById(idd) ;
-      sudoku[i][j] = parseInt(cell.value) || 0;
+      let idd = "rc" + i + j;
+      let cell = document.getElementById(idd);
+      let value = parseInt(cell.value) || 0;
+      board[i][j] = value;
+      given[i][j] = value != 0;
     }
   }
-  var ans = solveSudokuF(sudoku);
-  if (ans === true) {
-    alert("Sudoku Solved") ;
+  if (!isBoardValid(board)) {
+    alert("❌ Invalid Sudoku input (conflict in row/col/box).");
+    return;
+  }
+
+  if (sudokuSolver(board, 0, 0)) {
+    alert("Sudoku Solved!");
+    // Write solved board back to HTML
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
-        var idd = ("rc"+i)+j ;
-        var inputElement = document.getElementById(idd);
-        inputElement.value = sudoku[i][j] ;
+        let idd = "rc" + i + j;
+        let cell = document.getElementById(idd);
+        cell.value = board[i][j];
+        if (given[i][j]){
+        cell.style.fontWeight = "bold";
+        cell.style.color  = "blue";
+      }else{
+        cell.style.fontWeight = "normal";
+        cell.style.color = "black";
       }
+      }
+      
     }
-  }
-  else {
-    alert("Invalid Sudoku");
+  } else {
+    alert("no soluiton exist for this soduko");
   }
   return;
 }
 
-function resetSoduko()
-{
+// ✅ Reset function
+function resetSoduko() {
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-      var idd = ("rc"+i)+j ;
-      var inputElement = document.getElementById(idd);
-      inputElement.value = null ;
+      let idd = "rc" + i + j;
+      document.getElementById(idd).value = "";
     }
   }
 }
